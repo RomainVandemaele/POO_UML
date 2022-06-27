@@ -1,5 +1,13 @@
-package be.be.uml.Entities;
+package be.be.uml.entities;
 
+/**
+ * Class representing a man extending Person
+ * FA Man{firstName,lastName,beardLength}
+ *
+ * @attribute beardLength int represents beard length
+ *
+ * @invariant beardLength >= 0
+ */
 public class Man extends Person{
 
     private int beardLength = 3;

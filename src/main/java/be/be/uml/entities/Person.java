@@ -1,4 +1,4 @@
-package be.be.uml.Entities;
+package be.be.uml.entities;
 
 /**
  * Class representing a person
