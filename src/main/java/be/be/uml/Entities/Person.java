@@ -39,7 +39,6 @@ public abstract class Person {
         this.lastName = lastName;
     }
 
-
     /**
      * Method allowing a person to presents itselfs with its attributes
      */

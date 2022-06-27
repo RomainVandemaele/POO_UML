@@ -13,6 +13,12 @@ public class Man extends Person{
         super(firstName, lastName);
     }
 
+
+    public Man(String firstName, String lastName, int beardLength) {
+        super(firstName, lastName);
+        this.beardLength = beardLength;
+    }
+
     public int getBeardLength() {
         return beardLength;
     }
@@ -22,9 +28,10 @@ public class Man extends Person{
         this.beardLength = beardLength;
     }
 
-    public Man(String firstName, String lastName, int beardLength) {
-        super(firstName, lastName);
-        this.beardLength = beardLength;
+    public void shave() {
+
     }
+
+
 
 }
