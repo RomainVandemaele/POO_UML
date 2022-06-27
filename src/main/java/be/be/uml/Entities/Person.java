@@ -1,6 +1,15 @@
 package be.be.uml.Entities;
 
-public class Person {
+/**
+ * Class representing a person
+ * FA Person{firstname,lastname}
+ *
+ * @attributes firstName int
+ * @attribute lastName int
+ *
+ * @invariant firstName not null
+ */
+public abstract class Person {
     protected String firstName;
     protected String lastName;
 
@@ -31,11 +40,17 @@ public class Person {
     }
 
 
-
+    /**
+     * Method allowing a person to presents itselfs with its attributes
+     */
     public void present() {
         System.out.printf("I am %s %s\n",firstName,lastName);
     }
 
+    /**
+     * Method allowing a person to speak with a sentence
+     * @param sentence sentence to speak
+     */
     public void speak(String sentence) {
         System.out.printf("%s %s says : %s\n",firstName,lastName,sentence);
     }
