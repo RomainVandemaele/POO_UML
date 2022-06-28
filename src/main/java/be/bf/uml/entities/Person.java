@@ -1,4 +1,6 @@
-package be.be.uml.entities;
+package be.bf.uml.entities;
+
+import be.bf.uml.utils.ColorText;
 
 /**
  * Class representing a person
@@ -54,4 +56,18 @@ public abstract class Person {
         System.out.printf("%s %s says : %s\n",firstName,lastName,sentence);
     }
 
+    public void askInMariage(Person person) {
+        if(person==null) return;
+        if(person==this) {
+            System.out.println(ColorText.RED + "You cannot marry yourself" + ColorText.RESET);
+            System.out.println("Will you mrry me " + person );
+        }
+    }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(firstName).append(' ');
+        sb.append(lastName).append(' ');
+        return sb.toString();
+    }
 }

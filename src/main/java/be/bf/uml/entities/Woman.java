@@ -1,4 +1,6 @@
-package be.be.uml.entities;
+package be.bf.uml.entities;
+
+import be.bf.uml.utils.ColorText;
 
 import java.security.SecureRandom;
 
@@ -45,16 +47,13 @@ public class Woman extends Person{
      */
     public void giveBirth() {
         if(!this.isPregnant()) return;
-        final String ANSI_BLUE = "\u001B[34m";
-        final String ANSI_RED = "\u001B[31m";
-        final String ANSI_RESET = "\u001B[0m";
         setPregnant(false);
         SecureRandom sr = new SecureRandom();
         boolean isBoy = sr.nextBoolean();
         if(isBoy) {
-            System.out.println(ANSI_BLUE + "It is a boy" + ANSI_RESET);
+            System.out.println(ColorText.BLUE + "It is a boy" + ColorText.RESET);
         }else {
-            System.out.println(ANSI_RED + "It is a girl" + ANSI_RESET);
+            System.out.println(ColorText.RED + "It is a girl" + ColorText.RESET);
         }
     }
 

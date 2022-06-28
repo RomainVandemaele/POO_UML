@@ -1,6 +1,6 @@
-package be.be.uml;
+package be.bf.uml;
 
-import be.be.uml.entities.Woman;
+import be.bf.uml.entities.Woman;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -11,5 +11,7 @@ public class Main {
         w.giveBirth();
 
 
+        DatingForm df = new DatingForm();
+        df.startForm();
     }
 }

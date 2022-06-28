@@ -1,4 +1,4 @@
-package be.be.uml.entities;
+package be.bf.uml.entities;
 
 /**
  * Class representing a man extending Person
@@ -37,7 +37,7 @@ public class Man extends Person{
     }
 
     public void shave() {
-
+        setBeardLength(0);
     }
 
 
