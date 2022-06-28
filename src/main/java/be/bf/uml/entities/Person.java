@@ -104,6 +104,10 @@ public abstract class Person {
         }
     }
 
+    public static void whoAreYou() {
+        System.out.println("I am a person");
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();

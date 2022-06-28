@@ -41,5 +41,8 @@ public class Man extends Person{
     }
 
 
-
+    public static void whoAreYou() {
+        Person.whoAreYou();
+        System.out.println("I am a man");
+    }
 }

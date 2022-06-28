@@ -59,4 +59,9 @@ public class Woman extends Person{
         }
     }
 
+    public static void whoAreYou() {
+        Person.whoAreYou();
+        System.out.println("I am a woman");
+    }
+
 }
