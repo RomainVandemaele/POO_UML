@@ -60,7 +60,8 @@ public abstract class Person {
         if(person==null) return;
         if(person==this) {
             System.out.println(ColorText.RED + "You cannot marry yourself" + ColorText.RESET);
-            System.out.println("Will you mrry me " + person );
+        }else {
+            System.out.println("Will you marry me " + person );
         }
     }
     @Override
