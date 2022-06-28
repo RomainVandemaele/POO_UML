@@ -4,6 +4,7 @@ import be.bf.uml.utils.ColorText;
 import be.bf.uml.utils.Sex;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
 
 
 /**
@@ -26,6 +27,11 @@ public class Woman extends Person implements Sense{
 
     public Woman(String firstName, String lastName) {
         this(firstName,lastName,false);
+    }
+
+    public Woman(String firstName, String lastName, LocalDate birthday) {
+        this(firstName,lastName);
+        this.setBirthday(birthday);
     }
 
     public Woman(String firstName, String lastName, boolean isPregnant) {
@@ -60,7 +66,6 @@ public class Woman extends Person implements Sense{
      */
     public void giveBirth() {
         if(!this.isPregnant()) return;
-        setPregnant(false);
         SecureRandom sr = new SecureRandom();
         boolean isBoy = sr.nextBoolean();
         if(isBoy) {
@@ -68,6 +73,7 @@ public class Woman extends Person implements Sense{
         }else {
             System.out.println(ColorText.RED + "It is a girl" + ColorText.RESET);
         }
+        setPregnant(false);
     }
 
     public static void whoAreYou() {

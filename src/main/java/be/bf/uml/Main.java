@@ -4,22 +4,15 @@ import be.bf.uml.entities.Man;
 import be.bf.uml.entities.Person;
 import be.bf.uml.entities.Woman;
 
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-
-
-        Woman w= new Woman("Cleopatre","D'Egypte",false);
-        Man m = new Man("Jules","Cesar");
-
-        Woman.whoAreYou();
+        Woman w= new Woman("Cleopatre","D'Egypte", LocalDate.of(1990,10,01));
         w.present();
-        w.see();
-        w.listen();
-
-        Man.whoAreYou();
+        w.displayAge();
+        Man m = new Man("Jules","Cesar",LocalDate.of(1990,6,27));
         m.present();
-        m.see();
-        m.listen();
-
+        m.displayAge();
     }
 }

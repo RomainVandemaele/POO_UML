@@ -3,15 +3,20 @@ package be.bf.uml.entities;
 import be.bf.uml.utils.ColorText;
 import be.bf.uml.utils.Sex;
 
+import java.time.LocalDate;
+
 /**
  * Class representing a person
  * FA Person{firstname,lastname}
  *
  * @attributes firstName int
  * @attribute lastName int
+ * @attribute fiance Person
+ * @attribute isFiance boolean
  *
  * @invariant firstName not null
  * @invariant nPerson >=0
+ * @invarianr birthday present or past date
  */
 public abstract class Person {
     protected String firstName;
@@ -22,11 +27,18 @@ public abstract class Person {
 
     private static int nPerson = 0;
 
+    private LocalDate birthday;
+
 
     public Person(String firstName, String lastName) {
         setFirstName(firstName);
         setLastName(lastName);
         Person.nPerson++;
+    }
+
+    public Person(String firstName, String lastName, LocalDate birthday) {
+        this(firstName,lastName);
+        this.setBirthday(birthday);
     }
 
     public Person(String firstName) {
@@ -55,6 +67,30 @@ public abstract class Person {
         System.out.println(sb.toString());
     }
 
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        if(birthday==null) return;
+        if(birthday.isBefore(LocalDate.now()))
+        this.birthday = birthday;
+    }
+
+    public void displayAge() {
+        System.out.printf("I am %d years old\n",this.getAge());
+    }
+
+    public int getAge() {
+        if(this.birthday == null) return -1;
+        LocalDate now = LocalDate.now();
+        int age =  now.getYear() - this.birthday.getYear();
+        if( (now.getMonthValue() > this.birthday.getMonthValue() ) ||
+                (   (now.getMonthValue() == this.birthday.getMonthValue()) &&  now.getDayOfMonth() > birthday.getDayOfMonth() )  ) {
+            age--;
+        }
+        return age;
+    }
 
     /**
      * Method allowing a person to presents itselfs with its attributes

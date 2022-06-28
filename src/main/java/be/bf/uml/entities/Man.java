@@ -2,6 +2,8 @@ package be.bf.uml.entities;
 
 import be.bf.uml.utils.Sex;
 
+import java.time.LocalDate;
+
 /**
  * Class representing a man extending Person
  * FA Man{firstName,lastName,beardLength}
@@ -26,6 +28,11 @@ public class Man extends Person implements Sense{
     public Man(String firstName, String lastName) {
         super(firstName, lastName);
         Man.nMan++;
+    }
+
+    public Man(String firstName, String lastName, LocalDate birthday) {
+        this(firstName, lastName);
+        this.setBirthday(birthday);
     }
 
 
