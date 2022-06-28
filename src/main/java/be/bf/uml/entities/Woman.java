@@ -11,12 +11,14 @@ import java.security.SecureRandom;
  * FA Woman{FirstName, lastName, isPregnant}
  *
  * @attribute isPregnant boolean
+ * @invariant nWoman >=0
  */
 public class Woman extends Person{
 
     private boolean isPregnant = false;
 
     public static Sex SEX = Sex.Woman;
+    private static int nWoman = 0;
 
     public Woman(String firstName) {
         this(firstName,"");
@@ -29,7 +31,7 @@ public class Woman extends Person{
     public Woman(String firstName, String lastName, boolean isPregnant) {
         super(firstName, lastName);
         this.isPregnant = isPregnant;
-        this.e = "e";
+        Woman.nWoman++;
     }
 
     public boolean isPregnant() {
@@ -38,6 +40,12 @@ public class Woman extends Person{
 
     public void setPregnant(boolean isPregnant) {
         this.isPregnant  = isPregnant;
+    }
+
+    public static void displayNwoman() {
+        StringBuilder sb = new StringBuilder("There is ");
+        sb.append(Woman.nWoman).append(" women");
+        System.out.println(sb.toString());
     }
 
     /**

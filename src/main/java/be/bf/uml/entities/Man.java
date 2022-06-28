@@ -9,11 +9,14 @@ import be.bf.uml.utils.Sex;
  * @attribute beardLength int represents beard length
  *
  * @invariant beardLength >= 0
+ * @invariant nMan >=0
  */
 public class Man extends Person{
 
     private int beardLength = 3;
     public static Sex SEX = Sex.Man;
+
+    private static int nMan = 0;
 
 
     public Man(String firstName) {
@@ -22,6 +25,7 @@ public class Man extends Person{
 
     public Man(String firstName, String lastName) {
         super(firstName, lastName);
+        Man.nMan++;
     }
 
 
@@ -37,6 +41,12 @@ public class Man extends Person{
     public void setBeardLength(int beardLength) {
         if(beardLength < 0) return;
         this.beardLength = beardLength;
+    }
+
+    public static void displayNMan() {
+        StringBuilder sb = new StringBuilder("There is ");
+        sb.append(Man.nMan).append(" men");
+        System.out.println(sb.toString());
     }
 
     public void shave() {

@@ -11,6 +11,7 @@ import be.bf.uml.utils.Sex;
  * @attribute lastName int
  *
  * @invariant firstName not null
+ * @invariant nPerson >=0
  */
 public abstract class Person {
     protected String firstName;
@@ -18,16 +19,18 @@ public abstract class Person {
 
     protected Person fiance;
     protected boolean isFianced = false;
-    protected String e = "";
+
+    private static int nPerson = 0;
 
 
     public Person(String firstName, String lastName) {
         setFirstName(firstName);
         setLastName(lastName);
+        Person.nPerson++;
     }
 
     public Person(String firstName) {
-        setFirstName(firstName);
+        this(firstName,"");
     }
 
     public String getFirstName() {
@@ -46,6 +49,11 @@ public abstract class Person {
         this.lastName = lastName;
     }
 
+    public static void displayNPerson() {
+        StringBuilder sb = new StringBuilder("There is ");
+        sb.append(Person.nPerson).append(" persons");
+        System.out.println(sb.toString());
+    }
 
 
     /**
