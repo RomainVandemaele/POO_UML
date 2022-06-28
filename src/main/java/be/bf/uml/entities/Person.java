@@ -18,7 +18,7 @@ public abstract class Person {
     protected Person fiance;
     protected boolean isFianced = false;
     protected String e = "";
-    private Person this.set;
+
 
 
     public Person(String firstName, String lastName) {
@@ -69,23 +69,39 @@ public abstract class Person {
             System.out.println(ColorText.RED + "You cannot marry yourself" + ColorText.RESET);
         }else {
             System.out.println("Will you marry me " + person  + " ?");
+            this.setFiance(person);
+            this.isFianced = true;
+            person.setFiance(this);
+            person.isFianced = true;
         }
     }
 
     public void answerMarriageDemand(boolean answer) {
-        System.out.println("The answer is " + (answer?"yes":"no"));
-        if(answer) {
-            this.isFianced = true;
+        if(this.isFianced) {
+            System.out.println("The answer is " + (answer?"yes":"no"));
+            if(!answer) {
+                System.out.println(this.firstName + " is not engaged");
+                this.fiance.isFianced = false;
+                this.fiance.setFiance(null);
+                this.isFianced = false;
+                this.setFiance(null);
+            }else {
+                System.out.println(this.firstName + " is engaged to "+ this.fiance);
+            }
+        }else  {
+            System.out.println(ColorText.RED + "No demand in progress" + ColorText.RESET);
         }
     }
 
     public void setFiance(Person person) {
-        if(person == null) return;
         this.fiance = person;
     }
 
-    public boolean giveMarritalStatus(){
-        return this.isFianced;
+    public void giveMarritalStatus(){
+        System.out.println(this.firstName + " is " + (this.isFianced?"":"not") + " engaged");
+        if(this.isFianced) {
+            System.out.println("Engaged to : "+this.fiance);
+        }
     }
 
     @Override

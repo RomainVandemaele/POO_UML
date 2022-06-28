@@ -16,15 +16,17 @@ public class Woman extends Person{
     private boolean isPregnant = false;
 
     public Woman(String firstName) {
-        super(firstName);
+        this(firstName,"");
     }
 
     public Woman(String firstName, String lastName) {
-        super(firstName, lastName);
+        this(firstName,lastName,false);
     }
 
     public Woman(String firstName, String lastName, boolean isPregnant) {
         super(firstName, lastName);
+        this.isPregnant = isPregnant;
+        this.e = "e";
     }
 
     public boolean isPregnant() {

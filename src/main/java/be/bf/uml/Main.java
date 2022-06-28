@@ -10,6 +10,8 @@ public class Main {
 
         m.askInMarriage(w);
         w.answerMarriageDemand(true);
+        m.giveMarritalStatus();
+        w.giveMarritalStatus();
 
     }
 }
