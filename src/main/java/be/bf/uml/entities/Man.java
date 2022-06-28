@@ -11,7 +11,7 @@ import be.bf.uml.utils.Sex;
  * @invariant beardLength >= 0
  * @invariant nMan >=0
  */
-public class Man extends Person{
+public class Man extends Person implements Sense{
 
     private int beardLength = 3;
     public static Sex SEX = Sex.Man;
@@ -57,5 +57,15 @@ public class Man extends Person{
     public static void whoAreYou() {
         Person.whoAreYou();
         System.out.println("I am a man");
+    }
+
+    @Override
+    public void see() {
+        System.out.println("I see far away");
+    }
+
+    @Override
+    public void listen() {
+        System.out.println("I listen in my own way");
     }
 }

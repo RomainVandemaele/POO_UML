@@ -6,16 +6,20 @@ import be.bf.uml.entities.Woman;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        Person.displayNPerson();
-        Woman.displayNwoman();
-        Man.displayNMan();
+
 
         Woman w= new Woman("Cleopatre","D'Egypte",false);
         Man m = new Man("Jules","Cesar");
 
-        Person.displayNPerson();
-        Woman.displayNwoman();
-        Man.displayNMan();
+        Woman.whoAreYou();
+        w.present();
+        w.see();
+        w.listen();
+
+        Man.whoAreYou();
+        m.present();
+        m.see();
+        m.listen();
 
     }
 }

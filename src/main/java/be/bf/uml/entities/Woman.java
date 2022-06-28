@@ -13,7 +13,7 @@ import java.security.SecureRandom;
  * @attribute isPregnant boolean
  * @invariant nWoman >=0
  */
-public class Woman extends Person{
+public class Woman extends Person implements Sense{
 
     private boolean isPregnant = false;
 
@@ -75,4 +75,13 @@ public class Woman extends Person{
         System.out.println("I am a woman");
     }
 
+    @Override
+    public void listen() {
+        System.out.println("I listen to everything");
+    }
+
+    @Override
+    public void see() {
+        System.out.println("I see everything");
+    }
 }
