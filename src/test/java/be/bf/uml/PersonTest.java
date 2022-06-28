@@ -24,7 +24,7 @@ public class PersonTest {
 
     @Test
     public void constructorArgPassedOk() {
-        String firstName = "Sarah";
+        final String firstName = "Sarah";
         Person p2 = new Woman(firstName);
         Assertions.assertTrue(p2.getFirstName().equals(firstName));
         Assertions.assertTrue(p2.getLastName().equals(""));
@@ -32,16 +32,16 @@ public class PersonTest {
 
     @Test
     public void constructorArgPassedOk2() {
-        String firstName = "Sarah";
-        String lastName = "Sarah";
+        final String firstName = "Sarah";
+        final String lastName = "Sarah";
         Person p2 = new Woman(firstName,lastName);
         Assertions.assertTrue(p2.getFirstName().equals(firstName));
         Assertions.assertTrue(p2.getLastName().equals(lastName));
     }
     @Test
     public void constructorArgPassedOkWithBirthday() {
-        String firstName = "Sarah";
-        String lastName = "Sarah";
+        final String firstName = "Sarah";
+        final String lastName = "Sarah";
         LocalDate birthday = LocalDate.of(1984,1,1);
         Person p2 = new Woman(firstName,lastName,birthday);
         Assertions.assertTrue(p2.getFirstName().equals(firstName));
@@ -51,8 +51,8 @@ public class PersonTest {
 
     @Test
     public void constructorArgPassedNotOkWithFutureBirthday() {
-        String firstName = "Sarah";
-        String lastName = "Sarah";
+        final String firstName = "Sarah";
+        final String lastName = "Sarah";
         LocalDate birthday = LocalDate.of(2054,1,1);
         Assertions.assertThrows(DateFutureException.class, () -> new Woman(firstName,lastName,birthday) );
     }
@@ -86,12 +86,22 @@ public class PersonTest {
     }
 
     @Test
-    public void marriageProposalAndAnswer() {
-        Woman w= new Woman("Cleopatre","D'Egypte");
-        Man m = new Man("Jules","Cesar");
+    public void marriageProposalAndAnswerYes() {
+        final Woman w= new Woman("Cleopatre","D'Egypte");
+        final Man m = new Man("Jules","Cesar");
         w.askInMarriage(m);
+        m.answerMarriageDemand(true);
         Assertions.assertEquals(m.getFiance(),w);
         Assertions.assertEquals(w.getFiance(),m);
+    }
+    @Test
+    public void marriageProposalAndAnswerNo() {
+        final Woman w= new Woman("Cleopatre","D'Egypte");
+        final Man  m = new Man("Jules","Cesar");
+        w.askInMarriage(m);
+        m.answerMarriageDemand(false);
+        Assertions.assertEquals(m.getFiance(),null);
+        Assertions.assertEquals(w.getFiance(),null);
     }
 
     @Test
