@@ -1,5 +1,6 @@
 package be.bf.uml.entities;
 
+import be.bf.uml.exception.NotPregnantException;
 import be.bf.uml.utils.ColorText;
 import be.bf.uml.utils.Sex;
 
@@ -48,7 +49,7 @@ public class Woman extends Person implements Sense{
         this.isPregnant  = isPregnant;
     }
 
-    public static void displayNwoman() {
+    public static void displayNWoman() {
         StringBuilder sb = new StringBuilder("There is ");
         sb.append(Woman.nWoman).append(" women");
         System.out.println(sb.toString());
@@ -64,8 +65,8 @@ public class Woman extends Person implements Sense{
     /**
      * Method allowing woman to give birth to a child boy or girl
      */
-    public void giveBirth() {
-        if(!this.isPregnant()) return;
+    public void giveBirth() throws  NotPregnantException {
+        if(!this.isPregnant()) throw new NotPregnantException();
         SecureRandom sr = new SecureRandom();
         boolean isBoy = sr.nextBoolean();
         if(isBoy) {

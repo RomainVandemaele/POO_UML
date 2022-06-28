@@ -1,5 +1,6 @@
 package be.bf.uml.entities;
 
+import be.bf.uml.exception.BeardLengthNumberException;
 import be.bf.uml.utils.Sex;
 
 import java.time.LocalDate;
@@ -45,8 +46,8 @@ public class Man extends Person implements Sense{
         return beardLength;
     }
 
-    public void setBeardLength(int beardLength) {
-        if(beardLength < 0) return;
+    public void setBeardLength(int beardLength) throws BeardLengthNumberException {
+        if(beardLength < 0) throw new BeardLengthNumberException();
         this.beardLength = beardLength;
     }
 

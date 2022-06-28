@@ -1,5 +1,9 @@
 package be.bf.uml.entities;
 
+import be.bf.uml.exception.AlreadyMarriedException;
+import be.bf.uml.exception.DateFutureException;
+import be.bf.uml.exception.MarryYourselfException;
+import be.bf.uml.exception.NoDemandException;
 import be.bf.uml.utils.ColorText;
 import be.bf.uml.utils.Sex;
 
@@ -72,8 +76,8 @@ public abstract class Person {
     }
 
     public void setBirthday(LocalDate birthday) {
-        if(birthday==null) return;
-        if(birthday.isBefore(LocalDate.now()))
+        if(birthday==null) throw new NullPointerException();
+        if(birthday.isBefore(LocalDate.now())) throw new DateFutureException();
         this.birthday = birthday;
     }
 
@@ -81,8 +85,8 @@ public abstract class Person {
         System.out.printf("I am %d years old\n",this.getAge());
     }
 
-    public int getAge() {
-        if(this.birthday == null) return -1;
+    public int getAge() throws NullPointerException {
+        if(this.birthday == null) throw new NullPointerException();
         LocalDate now = LocalDate.now();
         int age =  now.getYear() - this.birthday.getYear();
         if( (now.getMonthValue() > this.birthday.getMonthValue() ) ||
@@ -107,20 +111,19 @@ public abstract class Person {
         System.out.printf("%s %s says : %s\n",firstName,lastName,sentence);
     }
 
-    public void askInMarriage(Person person) {
-        if(person==null) return;
-        if(person==this) {
-            System.out.println(ColorText.RED + "You cannot marry yourself" + ColorText.RESET);
-        }else {
-            System.out.println("Will you marry me " + person  + " ?");
-            this.setFiance(person);
-            this.isFianced = true;
-            person.setFiance(this);
-            person.isFianced = true;
-        }
+    public void askInMarriage(Person person) throws NullPointerException,MarryYourselfException{
+        if(person==null) throw new NullPointerException();
+        if(person==this) throw new MarryYourselfException();
+        if(this.isFianced) throw new AlreadyMarriedException();
+
+        System.out.println("Will you marry me " + person  + " ?");
+        this.setFiance(person);
+        this.isFianced = true;
+        person.setFiance(this);
+        person.isFianced = true;
     }
 
-    public void answerMarriageDemand(boolean answer) {
+    public void answerMarriageDemand(boolean answer) throws NoDemandException {
         if(this.isFianced) {
             System.out.println("The answer is " + (answer?"yes":"no"));
             if(!answer) {
@@ -133,7 +136,7 @@ public abstract class Person {
                 System.out.println(this.firstName + " is engaged to "+ this.fiance);
             }
         }else  {
-            System.out.println(ColorText.RED + "No demand in progress" + ColorText.RESET);
+            throw new NoDemandException();
         }
     }
 
