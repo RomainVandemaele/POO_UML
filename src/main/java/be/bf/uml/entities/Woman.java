@@ -1,6 +1,7 @@
 package be.bf.uml.entities;
 
 import be.bf.uml.utils.ColorText;
+import be.bf.uml.utils.Sex;
 
 import java.security.SecureRandom;
 
@@ -14,6 +15,8 @@ import java.security.SecureRandom;
 public class Woman extends Person{
 
     private boolean isPregnant = false;
+
+    public static Sex SEX = Sex.Woman;
 
     public Woman(String firstName) {
         this(firstName,"");

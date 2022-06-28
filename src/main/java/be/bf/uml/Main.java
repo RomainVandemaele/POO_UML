@@ -8,10 +8,8 @@ public class Main {
         Woman w= new Woman("Cleopatre","D'Egypte",false);
         Man m = new Man("Jules","Cesar");
 
-        Woman.whoAreYou();
-        w.present();
-        Man.whoAreYou();
-        m.present();
+        System.out.println(Woman.SEX);
+        System.out.println(Man.SEX);
 
     }
 }

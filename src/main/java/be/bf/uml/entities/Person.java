@@ -1,6 +1,7 @@
 package be.bf.uml.entities;
 
 import be.bf.uml.utils.ColorText;
+import be.bf.uml.utils.Sex;
 
 /**
  * Class representing a person
@@ -18,7 +19,6 @@ public abstract class Person {
     protected Person fiance;
     protected boolean isFianced = false;
     protected String e = "";
-
 
 
     public Person(String firstName, String lastName) {

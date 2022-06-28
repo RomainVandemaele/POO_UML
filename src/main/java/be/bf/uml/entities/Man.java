@@ -1,5 +1,7 @@
 package be.bf.uml.entities;
 
+import be.bf.uml.utils.Sex;
+
 /**
  * Class representing a man extending Person
  * FA Man{firstName,lastName,beardLength}
@@ -11,10 +13,11 @@ package be.bf.uml.entities;
 public class Man extends Person{
 
     private int beardLength = 3;
+    public static Sex SEX = Sex.Man;
 
 
     public Man(String firstName) {
-        super(firstName);
+        this(firstName,"");
     }
 
     public Man(String firstName, String lastName) {
@@ -23,7 +26,7 @@ public class Man extends Person{
 
 
     public Man(String firstName, String lastName, int beardLength) {
-        super(firstName, lastName);
+        this(firstName, lastName);
         this.beardLength = beardLength;
     }
 
