@@ -8,6 +8,8 @@ public class Main {
         Woman w= new Woman("Cleopatre","D'Egypte",false);
         Man m = new Man("Jules","Cesar");
 
-        m.askInMariage(w);
+        m.askInMarriage(w);
+        w.answerMarriageDemand(true);
+
     }
 }

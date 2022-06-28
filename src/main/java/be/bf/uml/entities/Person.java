@@ -15,6 +15,10 @@ public abstract class Person {
     protected String firstName;
     protected String lastName;
 
+    protected Person fiance;
+    protected boolean isFianced = false;
+    protected String e = "";
+
 
     public Person(String firstName, String lastName) {
         setFirstName(firstName);
@@ -41,6 +45,8 @@ public abstract class Person {
         this.lastName = lastName;
     }
 
+
+
     /**
      * Method allowing a person to presents itselfs with its attributes
      */
@@ -56,14 +62,29 @@ public abstract class Person {
         System.out.printf("%s %s says : %s\n",firstName,lastName,sentence);
     }
 
-    public void askInMariage(Person person) {
+    public void askInMarriage(Person person) {
         if(person==null) return;
         if(person==this) {
             System.out.println(ColorText.RED + "You cannot marry yourself" + ColorText.RESET);
         }else {
-            System.out.println("Will you marry me " + person );
+            System.out.println("Will you marry me " + person  + " ?");
         }
     }
+
+    public void answerMarriageDemand(boolean answer) {
+        System.out.println("The answer is " + (answer?"yes":"no"));
+        this.isFianced = true;
+    }
+
+    public void setFiance(Person person) {
+        if(person == null) return;
+        this.fiance = person;
+    }
+
+    public boolean giveMarritalStatus(){
+        return this.isFianced;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
