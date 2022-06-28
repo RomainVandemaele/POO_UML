@@ -8,6 +8,7 @@ import be.bf.uml.utils.ColorText;
 import be.bf.uml.utils.Sex;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * Class representing a person
@@ -88,12 +89,22 @@ public abstract class Person {
     public int getAge() throws NullPointerException {
         if(this.birthday == null) throw new NullPointerException();
         LocalDate now = LocalDate.now();
-        int age =  now.getYear() - this.birthday.getYear();
-        if( (now.getMonthValue() > this.birthday.getMonthValue() ) ||
-                (   (now.getMonthValue() == this.birthday.getMonthValue()) &&  now.getDayOfMonth() > birthday.getDayOfMonth() )  ) {
-            age--;
-        }
-        return age;
+        Period p = Period.between(birthday,now);
+        return p.getYears();
+//        int age =  now.getYear() - this.birthday.getYear();
+//        if( (now.getMonthValue() < this.birthday.getMonthValue() ) ||
+//                (   (now.getMonthValue() == this.birthday.getMonthValue()) &&  now.getDayOfMonth() < birthday.getDayOfMonth() )  ) {
+//            age--;
+//        }
+//        return age;
+    }
+
+    public Person getFiance() {
+        return fiance;
+    }
+
+    public boolean isFianced() {
+        return isFianced;
     }
 
     /**
@@ -111,6 +122,13 @@ public abstract class Person {
         System.out.printf("%s %s says : %s\n",firstName,lastName,sentence);
     }
 
+
+    /**
+     * Mehod to to a marriage proposal to another person. it puts the fiance as the oher for both parties
+     * @param person person the proposal is to.
+     * @throws NullPointerException if you want o marry null
+     * @throws MarryYourselfException if you try to marry yourself
+     */
     public void askInMarriage(Person person) throws NullPointerException,MarryYourselfException{
         if(person==null) throw new NullPointerException();
         if(person==this) throw new MarryYourselfException();
@@ -123,6 +141,11 @@ public abstract class Person {
         //person.isFianced = true;
     }
 
+    /**
+     * Method to answer a proposal either Yes(true) or No(False)
+     * @param answer boolean
+     * @throws NoDemandException If that person received no demand
+     */
     public void answerMarriageDemand(boolean answer) throws NoDemandException {
         if(this.fiance!=null) {
             System.out.println("The answer is " + (answer?"yes":"no"));

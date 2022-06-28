@@ -16,9 +16,9 @@ public class Main {
         Man m = new Man("Jules","Cesar",LocalDate.of(1990,6,27));
 
         List<Thread> threadList = new ArrayList<>();
-        for(int i =0;i<10000000;++i) {
-            threadList.add(new TimerThread());
-            threadList.get(threadList.size()-1).start();
+        for(int i =0;i<100000;++i) {
+                threadList.add(new TimerThread());
+                threadList.get(threadList.size()-1).start();
         }
         for(int i =0;i<10;++i) { threadList.get(i).join();}
 
