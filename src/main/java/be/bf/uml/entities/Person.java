@@ -18,6 +18,7 @@ public abstract class Person {
     protected Person fiance;
     protected boolean isFianced = false;
     protected String e = "";
+    private Person this.set;
 
 
     public Person(String firstName, String lastName) {
@@ -73,7 +74,9 @@ public abstract class Person {
 
     public void answerMarriageDemand(boolean answer) {
         System.out.println("The answer is " + (answer?"yes":"no"));
-        this.isFianced = true;
+        if(answer) {
+            this.isFianced = true;
+        }
     }
 
     public void setFiance(Person person) {
