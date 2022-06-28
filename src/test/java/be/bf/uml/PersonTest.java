@@ -16,6 +16,5 @@ public class PersonTest {
         Person p = new Woman("Cleopatre","D'Egypte", LocalDate.of(1990,10,01));
         Assertions.assertThrows(NoDemandException.class, () -> p.answerMarriageDemand(true));
         Assertions.assertThrows(NoDemandException.class, () -> p.answerMarriageDemand(false));
-
     }
 }
