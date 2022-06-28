@@ -77,7 +77,7 @@ public abstract class Person {
 
     public void setBirthday(LocalDate birthday) {
         if(birthday==null) throw new NullPointerException();
-        if(birthday.isBefore(LocalDate.now())) throw new DateFutureException();
+        if(!birthday.isBefore(LocalDate.now())) throw new DateFutureException();
         this.birthday = birthday;
     }
 
@@ -118,21 +118,23 @@ public abstract class Person {
 
         System.out.println("Will you marry me " + person  + " ?");
         this.setFiance(person);
-        this.isFianced = true;
+        //this.isFianced = true;
         person.setFiance(this);
-        person.isFianced = true;
+        //person.isFianced = true;
     }
 
     public void answerMarriageDemand(boolean answer) throws NoDemandException {
-        if(this.isFianced) {
+        if(this.fiance!=null) {
             System.out.println("The answer is " + (answer?"yes":"no"));
             if(!answer) {
                 System.out.println(this.firstName + " is not engaged");
                 this.fiance.isFianced = false;
-                this.fiance.setFiance(null);
                 this.isFianced = false;
+                this.fiance.setFiance(null);
                 this.setFiance(null);
             }else {
+                this.isFianced = true;
+                this.fiance.isFianced = true;
                 System.out.println(this.firstName + " is engaged to "+ this.fiance);
             }
         }else  {
@@ -145,9 +147,14 @@ public abstract class Person {
     }
 
     public void giveMarritalStatus(){
-        System.out.println(this.firstName + " is " + (this.isFianced?"":"not") + " engaged");
         if(this.isFianced) {
+            System.out.println(this.firstName + " is engaged");
             System.out.println("Engaged to : "+this.fiance);
+        }else if(this.fiance!=null) {
+            System.out.println(this.firstName + " has a marriage demand ");
+            System.out.println("demand from : "+this.fiance);
+        }else {
+            System.out.println(this.firstName + " is not engaged");
         }
     }
 
