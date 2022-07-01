@@ -131,7 +131,9 @@ public abstract class Person {
      */
     public void askInMarriage(Person person) throws NullPointerException,MarryYourselfException{
         if(person==null) throw new NullPointerException();
-        if(person==this) throw new MarryYourselfException();
+        if(person.equals(this)) throw new MarryYourselfException();
+        if(person.fiance!=null) throw new AlreadyMarriedException();
+        if(this.fiance!=null) throw new AlreadyMarriedException();
         if(this.isFianced) throw new AlreadyMarriedException();
 
         System.out.println("Will you marry me " + person  + " ?");
@@ -149,12 +151,17 @@ public abstract class Person {
     public void answerMarriageDemand(boolean answer) throws NoDemandException {
         if(this.fiance!=null) {
             System.out.println("The answer is " + (answer?"yes":"no"));
-            if(!answer) {
-                System.out.println(this.firstName + " is not engaged");
+
+            if(this.isFianced || !answer) {
                 this.fiance.isFianced = false;
-                this.isFianced = false;
                 this.fiance.setFiance(null);
-                this.setFiance(null);
+                if(!answer) {
+                    System.out.println(this.firstName + " is not engaged");
+                    this.isFianced = false;
+                    this.setFiance(null);
+                }else {
+                    System.out.println(this.firstName + " is already engaged");
+                }
             }else {
                 this.isFianced = true;
                 this.fiance.isFianced = true;

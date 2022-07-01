@@ -8,11 +8,15 @@ import be.bf.uml.utils.ColorText;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/**
+ * The type Dating form.
+ */
 public class DatingForm {
 
-    ArrayList<Man> men = new ArrayList<>();
-    ArrayList<Woman> women = new ArrayList<>();
-    Scanner myScanner = new Scanner(System.in);
+    private ArrayList<Man> men = new ArrayList<>();
+    private ArrayList<Woman> women = new ArrayList<>();
+    private Scanner myScanner = new Scanner(System.in);
 
     public DatingForm() {
         men.add(new Man("Jules","Cesar"));
@@ -24,14 +28,15 @@ public class DatingForm {
         women.add(new Woman("Lotte","Van amsterdam"));
     }
 
+
     public void startForm() {
         System.out.println("What are you interested in ?");
         System.out.println("1. Man");
         System.out.println("2. Woman");
-        String choice = this.myScanner.next();
+        String choice = this.myScanner.nextLine();
         while (!choice.matches("[12]")) {
             System.out.println(ColorText.RED + "Error : invalid choice" + ColorText.RESET);
-            choice = this.myScanner.next();
+            choice = this.myScanner.nextLine();
         }
         ArrayList<Person> datingCandidates = new ArrayList<>() ;
 
@@ -48,6 +53,11 @@ public class DatingForm {
         System.out.println("See you soon\n");
     }
 
+    /**
+     * @
+     * @param datingCandidates
+     * @return
+     */
     public ArrayList<Person> listPerson(ArrayList<Person> datingCandidates) {
         ArrayList<Person> likedPeople = new ArrayList<>();
         int i = 0;
@@ -55,10 +65,10 @@ public class DatingForm {
             Person candidate = datingCandidates.get(i);
             System.out.println("Push Q for quitting, 1 for like, 0 for dislike");
             System.out.printf("Candidate is : %s %s\n",candidate.getLastName(),candidate.getFirstName());
-            String choice = this.myScanner.next();
+            String choice = this.myScanner.nextLine();
             while (! choice.matches("[01Q]")) {
                 System.out.println(ColorText.RED + "Error : invalid choice" + ColorText.RESET);
-                choice = this.myScanner.next();
+                choice = this.myScanner.nextLine();
             }
             switch (choice) {
                 case "Q" :

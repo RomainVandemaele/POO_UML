@@ -13,30 +13,30 @@ public class WomanTest {
     Woman w;
 
     @BeforeEach
-    public void init() {
+    void init() {
         this.w = new Woman("Lotte","van Der Bergen", LocalDate.now().minusYears(69));
     }
 
     @Test
-    public void isNotPregnant() {
+    void isNotPregnant() {
         Assertions.assertFalse(this.w.isPregnant());
     }
 
     @Test
-    public void canGetPregnant() {
+    void canGetPregnant() {
         this.w.setPregnant(true);
         Assertions.assertTrue(this.w.isPregnant());
     }
 
     @Test
-    public void cannotGiveBirthIfNotPregnant() {
+    void cannotGiveBirthIfNotPregnant() {
         this.w.setPregnant(false);
         Assertions.assertThrows(NotPregnantException.class,() -> this.w.giveBirth());
     }
 
 
     @Test
-    public void notPregnantAfterGivingBirth()  {
+    void notPregnantAfterGivingBirth()  {
         try {
             this.w.setPregnant(true);
             this.w.giveBirth();

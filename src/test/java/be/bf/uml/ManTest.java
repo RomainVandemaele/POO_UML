@@ -13,36 +13,36 @@ public class ManTest {
     Man m;
 
     @BeforeEach
-    public void init() {
+    void init() {
         this.m = new Man("Gérard","Maillot",LocalDate.now().minusYears(25));
     }
 
     @Test
-    public void beardLengthShouldBe3ByDefault() {
+    void beardLengthShouldBe3ByDefault() {
         Assertions.assertEquals(m.getBeardLength(),3);
     }
 
     @Test
-    public void shouldChangeBeardLength() {
+    void shouldChangeBeardLength() {
         final int newLength = 15;
         this.m.setBeardLength(newLength);
         Assertions.assertEquals(this.m.getBeardLength(),newLength);
     }
 
     @Test
-    public void shouldShaveBeard() {
+    void shouldShaveBeard() {
         this.m.shave();
         Assertions.assertEquals(this.m.getBeardLength(),0);
     }
 
     @Test
-    public void cannotHaveNegativeBeardLength() {
+    void cannotHaveNegativeBeardLength() {
         Assertions.assertThrows(BeardLengthNumberException.class ,() -> this.m.setBeardLength(-5) );
     }
 
 
     @Test
-    public void ageShouldBeCorect() {
+    void ageShouldBeCorect() {
         Man m = new Man("Jules","Cesar", LocalDate.of(1990,6,26));
         Assertions.assertEquals(m.getAge(),32);
     }
